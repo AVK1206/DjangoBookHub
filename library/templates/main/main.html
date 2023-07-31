@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to the Library</title>
+    <style>
+
+        body {
+            background-image: url("https://cdn.thespaces.com/wp-content/uploads/2023/03/George-peabody-library_Matthew-Petroff-.jpeg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 80vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            text-align: center;
+            margin-left: 100px;
+            margin-bottom: 300px;
+        }
+
+        h1 {
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: 60px;
+        }
+
+
+        .btn-container {
+            margin-top: 20px;
+            font-size: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 100px 100px;
+            background-color: #129689;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+
+        .btn-primary {
+            background-color: #129689;
+        }
+
+         .btn-primary-out {
+            background-color: #801d40;
+        }
+
+        .btn-primary:hover {
+            background-color: #50C878;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the Main Page</h1>
+        <div class="btn-container">
+            <a href="{% url 'book-main' %}" name="book" class="btn btn-primary">Go to Book App</a>
+            <a href="{% url 'author-main' %}" name="author" class="btn btn-primary">Go to Author App</a>
+            <a href="{% url 'order-main' %}" name="order" class="btn btn-primary">Go to Order App</a>
+            <a href="{% url 'user-logout' %}" class="btn btn-primary-out">Logout</a>
+        </div>
+    </div>
+</body>
+</html>
+

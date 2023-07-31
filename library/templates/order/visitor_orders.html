@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Orders</title>
+    <style>
+        body {
+            background-image: url("https://cdn.thecoolist.com/wp-content/uploads/2016/11/Clementinum-beautiful-library.jpg");
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color:#129689;
+            padding: 20px;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #373a52;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .back-button {
+            display: block;
+            margin-top: 20px;
+            background-color: #e74c3c;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+    <h1>All Orders</h1>
+    <table>
+  <thead>
+    <tr>
+      <th>Order ID</th>
+      <th>Book</th>
+      <th>Created At</th>
+      <th>Plated End At</th>
+      <th>User First Name</th>
+      <th>User Last Name</th>
+      <th>User ID</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for order in orders %}
+      <tr>
+        <td>{{ order.id }}</td>
+        <td>{{ order.book }}</td>
+        <td>{{ order.created_at }}</td>
+        <td>{{ order.plated_end_at }}</td>
+        <td>{{ order.user.first_name }}</td>
+        <td>{{ order.user.last_name }}</td>
+        <td>{{ order.user.id }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+    <button class="back-button" onclick="goBack()">&#8592; Back</button>
+    </div>
+    <script>
+        function goBack() {
+            window.location.href = "{% url 'order-main' %}";
+        }
+       </script>
+</body>
+</html>

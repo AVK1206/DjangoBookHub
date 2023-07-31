@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Authors</title>
+    <style>
+        body {
+            background-image: url("https://b2581825.smushcdn.com/2581825/wp-content/uploads/2020/04/72146655_153642362407088_427166195855291500_n.jpg?lossy=1&strip=1&webp=1");
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color:#129689;
+            padding: 20px;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #373a52;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .back-button {
+            display: block;
+            margin-top: 20px;
+            background-color: #e74c3c;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+
+        .back-button:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+    <h1>All Authors</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Patronymic</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for author in authors %}
+            <tr>
+                <td>{{ author.pk }}</td>
+                <td>{{ author.name }}</td>
+                <td>{{ author.surname }}</td>
+                <td>{{ author.patronymic }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <button class="back-button" onclick="goBack()">&#8592; Back</button>
+    </div>
+    <script>
+        function goBack() {
+            window.location.href = "{% url 'author-main' %}";
+        }
+    </script>
+</body>
+</html>

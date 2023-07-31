@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Search</title>
+    <style>
+        body {
+            background-image: url("https://images.unsplash.com/photo-1568667256549-094345857637?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bGlicmFyeXxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80");
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        form {
+            font-size: 24px;
+            color: white;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 300px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+        }
+
+        button[type="submit"] {
+            padding: 10px 20px;
+            background-color: #129689;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #373a52;
+        }
+
+        .back-button {
+            display: block;
+            margin-top: 20px;
+            background-color: #e74c3c;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <h1>Book Search by Name</h1>
+    <form method="post" action="{% url 'get-books-by-name' %}">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">Search</button>
+    </form>
+    <button class="back-button" onclick="goBack()">&#8592; Back</button>
+        <script>
+            function goBack() {
+                window.location.href = "{% url 'book-main' %}";
+            }
+        </script>
+</body>
+</html>

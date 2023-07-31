@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Search Results</title>
+    <style>
+        body {
+            background-image: url("https://www.dcnewsnow.com/wp-content/uploads/sites/14/2022/09/GettyImages-1354441996.jpg?w=2560&h=1440&crop=1");
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color:#129689;
+            padding: 20px;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .back-button {
+            display: block;
+            margin-top: 20px;
+            background-color: #e74c3c;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<div class="container">
+        <h1>Book List</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Count</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody id="book-table">
+                {% for book in books %}
+                <tr>
+                    <td>{{ book.name }}</td>
+                    <td>{{ book.count }}</td>
+                    <td>{{ book.description }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <button class="back-button" onclick="goBack()">&#8592; Back</button>
+    </div>
+        <script>
+            function goBack() {
+                window.location.href = "{% url 'get-books-by-name' %}";
+            }
+        </script>
+</body>
+</html>

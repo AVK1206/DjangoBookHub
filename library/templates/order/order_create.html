@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Order</title>
+     <style>
+        body {
+            background-image: url("https://images5.alphacoders.com/394/394862.jpg");
+            font-family: italic;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #129689;
+            padding: 20px;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        p {
+            color: #ff0000;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: black;
+            font-size: 26px;
+        }
+        select, input[type="date"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #dddddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .error-message {
+            font-size: 34px;
+            text-align: center;
+            display: block;
+            background-color: #129689;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            padding: 10px;
+            border-radius: 15px;
+            margin-bottom: 10px;
+        }
+
+        .back-button {
+            display: block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #dddddd;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .back-button:hover {
+            background-color: #cccccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Create Order</h1>
+
+        {% if error_message %}
+        <p>{{ error_message }}</p>
+        {% endif %}
+
+        <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Create Order">
+        </form>
+    </div>
+   <button class="back-button" onclick="goBack()">&#8592; Back</button>
+    <script>
+        function goBack() {
+            window.location.href = "{% url 'order-main' %}";
+        }
+    </script>
+</body>
+</html>

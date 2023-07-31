@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to the Library</title>
+    <style>
+        body {
+            background-image: url("https://images.pexels.com/photos/1290141/pexels-photo-1290141.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            text-align: center;
+            margin-left: 200px;
+            margin-bottom: 650px;
+        }
+
+        h1 {
+            color: white;
+            font-family: italic;
+            font-size: 60px;
+        }
+
+        h1:hover {
+            color: #0000EB;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            font-size: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 100px 100px;
+            background-color: #129689;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+
+        .btn-primary {
+            background-color: #129689;
+        }
+
+        .btn-primary:hover {
+            background-color: #373a52;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>WELCOME TO THE LIBRARY</h1>
+    <div class="btn-container">
+        <a href="{% url 'user-registrate' %}" class="btn btn-primary">Registrate new user</a>
+        <a id='login_button' href="{% url 'user-login' %}" class="btn btn-primary">Login</a>
+    </div>
+</div>
+</body>
+</html>
+
+

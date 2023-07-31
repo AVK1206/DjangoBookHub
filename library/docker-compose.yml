@@ -1,0 +1,26 @@
+version: '3.11'
+
+services:
+  my_postgres_db:
+    image: postgres:latest
+    container_name: my_postgres_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    volumes:
+      - postgres_data:/postgresql/data
+
+  my_django_app:
+    container_name: my_django_app
+    restart: unless-stopped
+    build: .
+    ports:
+      - "8000:8000"
+    command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    depends_on:
+      - my_postgres_db
+
+volumes:
+  postgres_data:
