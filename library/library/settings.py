@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'authentication',
     'author',
     'book',
-    'order'
+    'order',
+    'debug_toolbar'
 ]
 
 AUTH_USER_MODEL = 'authentication.CustomUser'
@@ -52,6 +53,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+]
+
+INTERNAL_IPS = [
+    '127.0.0.1',
 ]
 
 AUTHENTICATION_BACKENDS = [
@@ -96,7 +102,7 @@ DATABASES = {
         'NAME': 'postgres',
         'USER': 'postgres',
         'PASSWORD': 'postgres',
-        'HOST': 'my_postgres_db',
+        'HOST': 'localhost',
         'PORT': '5432',
     }
 }
