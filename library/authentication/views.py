@@ -1,5 +1,6 @@
 import logging
 
+from django.core.mail import send_mail
 from django.shortcuts import render
 from django.utils import timezone
 from django.contrib.auth import authenticate, login, logout
@@ -28,6 +29,13 @@ def register(request):
             new_user.set_password(password)
             new_user.save()
             logger.info('New user registered: %s', new_user.email)
+            send_mail(
+                'Welcome to Our Website',
+                'Thank you for registering with us!',
+                'avk12061996@gmail.com',
+                [new_user.email],
+                fail_silently=True,
+            )
             return redirect('user-login')
     return render(request, 'authentication/register.html', {'form': form})
 
