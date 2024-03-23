@@ -1,11 +1,16 @@
+import logging
+
 from django.shortcuts import render
 from django.utils import timezone
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect
-from .forms import CustomUserForm
 from rest_framework import viewsets
+
+from .forms import CustomUserForm
 from .models import CustomUser
 from .serializers import CustomUserSerializer
+
+logger = logging.getLogger('dev')
 
 
 class CustomUserView(viewsets.ModelViewSet):
@@ -22,6 +27,7 @@ def register(request):
             new_user = form.save()
             new_user.set_password(password)
             new_user.save()
+            logger.info('New user registered: %s', new_user.email)
             return redirect('user-login')
     return render(request, 'authentication/register.html', {'form': form})
 
@@ -36,9 +42,12 @@ def login_view(request):
             user.last_login = timezone.now()
             user.is_active = True
             user.save()
+            logger.info('User logged in: %s', user.email)
             return redirect('main')
         else:
-            return render(request, 'authentication/login.html', {'error': 'You must input valid credentials!'})
+            logger.warning('Failed login attempt for email: %s', email)
+            return render(request, 'authentication/login.html',
+                          {'error': 'You must input valid credentials!'})
 
     return render(request, 'authentication/login.html')
 
@@ -47,6 +56,7 @@ def logout_view(request):
     request.user.is_active = False
     request.user.save()
     logout(request)
+    logger.info('User logged out: %s', request.user.email)
     return redirect('user-login')
 
 

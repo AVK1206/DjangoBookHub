@@ -1,9 +1,13 @@
+import logging
+
 from django.shortcuts import render, redirect
 
 from .forms import AuthorForm
 from .models import Author
 from rest_framework import viewsets
 from .serializers import AuthorSerializer
+
+logger = logging.getLogger('dev')
 
 
 class AuthorView(viewsets.ModelViewSet):
@@ -13,7 +17,10 @@ class AuthorView(viewsets.ModelViewSet):
 
 def authors_list_view(request):
     if request.user.role == 0:
-        return render(request, 'author/author_main.html', {'error': 'Only admin is able to see all authors!'})
+        logger.warning(
+            'Unauthorized access: Only admin is able to see all authors!')
+        return render(request, 'author/author_main.html',
+                      {'error': 'Only admin is able to see all authors!'})
     authors = Author.get_all()
     context = {'authors': authors}
     return render(request, 'author/author_list.html', context)
@@ -25,7 +32,10 @@ def author_main_page(request):
 
 def create_author_view(request):
     if request.user.role == 0:
-        return render(request, 'author/author_main.html', {'error': 'Only admin is able to add an author!'})
+        logger.warning(
+            'Unauthorized access: Only admin is able to see all authors!')
+        return render(request, 'author/author_main.html',
+                      {'error': 'Only admin is able to add an author!'})
     if request.method == 'POST':
         form = AuthorForm(request.POST)
         if form.is_valid():
